@@ -26,10 +26,9 @@ app.post('/chat', upload.single('image'), async (req, res) => {
           images: imagePath ? [imagePath] : []
         }
       ],
-      stream: false
+      stream: false,
     })
 
-    // remove imagem após uso
     if (imagePath) fs.unlinkSync(imagePath)
 
     res.json({ reply: response.message.content })
