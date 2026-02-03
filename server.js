@@ -18,7 +18,7 @@ app.post('/chat', upload.single('image'), async (req, res) => {
     const imagePath = req.file ? path.resolve(req.file.path) : null
 
     const response = await ollama.chat({
-      model: 'gemma3',
+      model: 'qwen3-vl:4b',
       messages: [
         {
           role: 'user',
