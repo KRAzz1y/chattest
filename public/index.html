@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <title>Ollama Chat</title>
+  <style>
+    body { font-family: Arial; background: #111; color: #fff; }
+    #chat { max-width: 600px; margin: auto; }
+    .msg { margin: 10px 0; }
+    .user { color: #4ade80; }
+    .bot { color: #60a5fa; }
+  </style>
+</head>
+<body>
+  <div id="chat">
+    <h2>💬 Ollama Chat</h2>
+
+    <div id="messages"></div>
+
+    <form id="form">
+      <input type="text" id="text" placeholder="Digite sua mensagem..." required />
+      <input type="file" id="image" accept="image/*" />
+      <button type="submit">Enviar</button>
+    </form>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>
