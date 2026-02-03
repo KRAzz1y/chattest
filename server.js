@@ -1,12 +1,14 @@
 const express = require('express')
 const cors = require('cors')
 const multer = require('multer')
-const ollama = require('ollama')
+const { Ollama } = require('ollama') // 👈 IMPORTANTE
 const path = require('path')
 const fs = require('fs')
 
 const app = express()
 const upload = multer({ dest: 'uploads/' })
+
+const ollama = new Ollama() // 👈 INSTÂNCIA DO CLIENTE
 
 app.use(cors())
 app.use(express.json())
@@ -18,15 +20,14 @@ app.post('/chat', upload.single('image'), async (req, res) => {
     const imagePath = req.file ? path.resolve(req.file.path) : null
 
     const response = await ollama.chat({
-      model: 'qwen3-vl:4b',
+      model: 'gemma3',
       messages: [
         {
           role: 'user',
           content: message,
           images: imagePath ? [imagePath] : []
         }
-      ],
-      stream: false,
+      ]
     })
 
     if (imagePath) fs.unlinkSync(imagePath)
@@ -34,7 +35,7 @@ app.post('/chat', upload.single('image'), async (req, res) => {
     res.json({ reply: response.message.content })
   } catch (err) {
     console.error(err)
-    res.status(500).json({ error: 'Erro ao conversar com a LLM' })
+    res.status(500).json({ error: err.message })
   }
 })
 
