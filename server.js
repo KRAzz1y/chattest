@@ -1,9 +1,9 @@
-import express from 'express'
-import cors from 'cors'
-import multer from 'multer'
-import ollama from 'ollama'
-import path from 'path'
-import fs from 'fs'
+const express = require('express')
+const cors = require('cors')
+const multer = require('multer')
+const ollama = require('ollama')
+const path = require('path')
+const fs = require('fs')
 
 const app = express()
 const upload = multer({ dest: 'uploads/' })
